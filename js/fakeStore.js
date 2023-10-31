@@ -1,9 +1,13 @@
 // Verbos http  GET(obtener), POST (Crear), PUT (Modificar), PATCH(Modificar) Y DELETE
+
 const divCards =document.getElementById("divCards")
 
 const resFetch = fetch("https://fakestoreapi.com/products") // el metodo por defecto de fetch es GET
+
   .then((res) => res.json()) // doy un formato json
+
   .then((response) => 
+
   divCards.innerHTML= response.map((producto) =>   `
     <div class="card my-3" style="width: 18rem;">
         <img src="${producto.image}" class="card-img-top" alt="...">
@@ -16,6 +20,7 @@ const resFetch = fetch("https://fakestoreapi.com/products") // el metodo por def
     )
     .join("") // lo uso para quitar las comas que aparecen (lo opuesto a lo split)
   )
+  
   .catch((err) => console.log(err));
 
 console.log(resFetch);

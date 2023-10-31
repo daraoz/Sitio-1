@@ -1,11 +1,13 @@
 const divProducto = document.getElementById("divProducto")
+
 let idProducto=location.search.split("=")[1];
+
 console.log(idProducto);
 
 fetch(`https://fakestoreapi.com/products/${idProducto}`) //mecanismo que le permite realizar llamadas simples AJAX (JavaScript asíncrono y XML)
             .then(res=>res.json())
             .then(
-                (producto)=>  
+                (producto)=>  // tiro el producto en el div producto de html producto
                     (divProducto.innerHTML= `
                         <div class="card my-3" style="width: 18rem;">
                         <img src="${producto.image}" class="card-img-top" alt="...">

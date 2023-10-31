@@ -1,40 +1,36 @@
-// const botonGoId = document.getElementById("botonCardGo1"); // busco un elemento segun su id y lo asigno una var
-// console.log(botonGoId); //  Muestro en Consola
 
-// const botonGoClass = document.getElementsByClassName('botonGoClass'); //busco un elemento segun su Class y lo asigno una var
-// console.log(botonGoClass); //  Muestro en Consola
+const varInpUser=document.getElementById("inputUsuarioId"); // busco elem HTML  y asigno a variable
+console.log(varInpUser)
 
-// const botonGoTags = document.getElementsByTagName('a');// busco un elemento segun su etiqueta y asigno una var
-// console.log(botonGoTags);  //  Muestro en Consola
+const varInpPass=document.getElementById("inputPasswordId");// busco elem HTML  y asigno a variable
+console.log(varInpPass)
 
-// const botonGoA = document.querySelector('#botonCardGo1');// busco un elemento segun id #
-// console.log(botonGoA);  //  Muestro en Consola
+const varInpConfPass=document.getElementById("inputConfirmPasswordId");// busco elem HTML  y asigno a variable
+console.log(varInpConfPass)
 
-// const botonGoB = document.querySelector('.botonGoClass');// busco un elemento segun su clase . (pueden ser otros atributos tb)
-// console.log(botonGoB);  //  Muestro en Consola
+const varBtnReg=document.getElementById("btnRegId"); // busco el boton de registro y lo asig a una variable
+console.log(varBtnReg)
 
-// const botonGoAll = document.querySelectorAll('.botonGoClass'); // busco todos los elementos segun su clase .
-// console.log(botonGoAll);  //  Muestro en Consola
+const varErrUser=document.getElementById("errorUsuarioId"); // busco el mensaje de error y asigno a variable
+console.log(varErrUser)
 
-// const titulo=document.getElementById("tituloUno");
+const varErrPass=document.getElementById("errorPasswordId"); // busco el mensaje de error y asigno a variable
+console.log(varErrPass)
 
-const errorUsuarioVar=document.getElementById("errorUsuarioId"); // busco el mensaje de error y asigno a variable
-const errorPasswordVar=document.getElementById("errorPasswordId"); // busco el mensaje de error y asigno a variable
-const errorConfirmPasswordVar=document.getElementById("errorConfirmPasswordId"); // busco el mensaje de error y asigno a variable
+const varErrConfPass=document.getElementById("errorConfirmPasswordId"); // busco el mensaje de error y asigno a variable
+console.log(varErrConfPass)
+
+varErrUser.classList.add("d-none"); // escondo el mensaje de error usuario
+
+varErrPass.classList.add("d-none"); // escondo el mensaje de error password
+
+varErrConfPass.classList.add("d-none"); // escondo el mensaje de error confirm password
+
+console.log (varInpUser); //muestro todo la linea HTML correspondiente
+console.log (varInpPass);//muestro todo la linea HTML correspondiente
+console.log (varInpConfPass);//muestro todo la linea HTML correspondiente
 
 
-errorUsuarioVar.classList.add("d-none"); // escondo el mensaje de error usuario
-errorPasswordVar.classList.add("d-none"); // escondo el mensaje de error password
-errorConfirmPasswordVar.classList.add("d-none"); // escondo el mensaje de error confirm password
-
-const VarBotonRegistro=document.getElementById("btnRegId"); // busco el boton de registro y lo asig a una variable
-
-const VarInputUsuario=document.getElementById("inputUsuarioId");// busco elem HTML  y asigno a variable
-console.log (VarInputUsuario); //muestro todo la linea HTML correspondiente
-const VarInputPassword=document.getElementById("inputPasswordId");// busco elem HTML  y asigno a variable
-console.log (VarInputPassword);//muestro todo la linea HTML correspondiente
-const VarInputConfirmPassword=document.getElementById("inputConfirmPasswordId");// busco elem HTML  y asigno a variable
-console.log (VarInputConfirmPassword);//muestro todo la linea HTML correspondiente
 
 
 const objUsuario = {  // construyo un objeto usuario para que los datos sobrevivan al concluir el evento
@@ -42,88 +38,99 @@ const objUsuario = {  // construyo un objeto usuario para que los datos sobreviv
     pass:"",
     conf:"",   
 };
+
 console.log(objUsuario) // muestro objeto obtenido
 
 
-
 const cambiosInputs = (evento) => {   // funcion cambios en inputs (Devuelve un objeto gigante!)
+
     objUsuario[evento.target.name]=evento.target.value; // Creo un objeto usuario para que los valores vivan  
     // cuando el evento se acabe. Ademas target.value contiene todo lo que la persona esta escribiendo
 
     console.log(objUsuario) // Ver en la consola bien el comportamiento, muy interesante
 
     if (evento.target.name==="user"&& evento.target.value !== "") //Verifica si no esta vacio
-    {
-        errorUsuarioVar.classList.add("d-none"); // oculta el mensaje rojo mientras escribe
-    } 
+
+        { varErrUser.classList.add("d-none");}// oculta el mensaje rojo mientras escribe
+
     else if (evento.target.name === "pass" && evento.target.value !== "" ) //verifica si no esta vacio
-    {
-        errorPasswordVar.classList.add("d-none"); // oculta el mensaje rojo mientras escribe
-    } 
+
+        { varErrPass.classList.add("d-none");} // oculta el mensaje rojo mientras escribe 
+
     else if (evento.target.name === "conf" && evento.target.value !== "" ) //Verifica si no esta vacio
-    {
-        errorConfirmPasswordVar.classList.add("d-none"); // oculta el mensaje rojo mientras escribe
-    }
-  
+        { varErrConfPass.classList.add("d-none");} // oculta el mensaje rojo mientras escribe
+
 };
+
+//  controlado lo de arriba
+
 
 const enviarRegistro = (ev) => {
-    ev.preventDefault(); // previene que la pagina se recargue
     
-    if (!objUsuario.user && !objUsuario.pass && !objUsuario.conf) // verif si no existe nada en los tres campos
+    ev.preventDefault(); // previene que la pagina se recargue
+
+
+    
+    if (!objUsuario.user && 
+        !objUsuario.pass && 
+        !objUsuario.conf) // verif si no existe nada en los tres campos
         {        
-        errorUsuarioVar.classList.remove("d-none"); //muestro el mensaje de error usuario
-        errorPasswordVar.classList.remove("d-none"); // muestro el mensaje de error password
-        errorConfirmPasswordVar.classList.remove("d-none"); // muestro el mensaje de error confirm password
+            varErrUser.classList.remove("d-none"); //muestro el mensaje de error usuario
+            varErrPass.classList.remove("d-none"); // muestro el mensaje de error password
+            varErrConfPass.classList.remove("d-none"); // muestro el mensaje de error confirm password
         };
-    if ( !objUsuario.user)
+        
+        if ( !objUsuario.user)
         {
-        errorUsuarioVar.classList.remove("d-none");
+            varErrUser.classList.remove("d-none");
         }
-    if (!objUsuario.pass)
+        
+        if (!objUsuario.pass)
         {
-       errorPasswordVar.classList.remove("d-none");
+            varErrPass.classList.remove("d-none");
         }
-    if (!objUsuario.conf)
+        
+        if (!objUsuario.conf)
         {
-        errorConfirmPasswordVar.classList.remove("d-none");
+            varErrConfPass.classList.remove("d-none");
         }
-    if (objUsuario.user && objUsuario.pass && objUsuario.conf)
-        {
-        console.log(objUsuario);
+        
+        if (objUsuario.user &&  objUsuario.pass &&  objUsuario.conf) {    // aquí pregunto si extiste todo el objeto
+        
+            if (objUsuario.pass === objUsuario.conf) { // Las contraseñas son iguales? 
+                    // si son iguales , comienzo a crear ese objeto nuevo con el id
+                const users = JSON.parse(localStorage.getItem('users')) || [] // (or) si no existe user, entonces devuelve un undefined y prefiero un arreglo vacío
+
+                const id = users.length > 0 ? users[users.length -1 ].id + 1 : 1  // obtener el último elemento del array y agragarle uno . En algun momento de la historia , el array va a estar vacio. Entonces hago un ... Ternario :  condición ? valor_si_verdadero : valor_si_falso  
+                // El valor  vale 0, entonces uso la condicion falso y hago valer el id 1               
+                
+                const newUser ={
+                    id,
+                    usuario: objUsuario.user,
+                    pass: objUsuario.pass,
+                    role: "user",  
+                    login: false,
+                };  // he construido un nuevo usuario
+                
+                users.push(newUser);
+                varInpUser.value='';
+                varInpPass.value='';
+                varInpConfPass.value='';
+                localStorage.setItem("users",JSON.stringify(users))
+                setTimeout(()=> {
+                    location.href= '../html/iniciar-sesion.html';
+
+                },1000)
+                console.log(users);
+            } 
+            else // si las contraseñas no son iguales
+            { 
+                alert (" las contraseñas no coinciden");   
+            }
         }
 };
-
-VarInputUsuario.addEventListener('input',cambiosInputs); // es como una funcion (video Dom Time 1:06:53)
-VarInputPassword.addEventListener('input',cambiosInputs);
-VarInputConfirmPassword.addEventListener('input',cambiosInputs);
-
-
-
-VarBotonRegistro.addEventListener('click',enviarRegistro)
-
-
-// setTimeout(()=> {
-//     titulo.innerText= "Hola Mundo";
-// },3000);
-
-// const divPrincipalVar = document.getElementById("divPrincipalId");
-
-// console.log(divPrincipalVar)   //  Muestro en Consola
-// const p=document.createElement("p");
-
-// p.innerText="Soy un párrafo desde Js"
-// divPrincipalVar.appendChild(p)
-// console.log(p);   //  Muestro en Consola
-
-// const funcionBoton=()=> {
-//     console.log("Clicksss");   //  Muestro en Consola
-//     alert("boton apretado");
-// };
-
-// const funcionEjecutadaHtml1=()=>{
-//     console.log("html");    // Muestro en Consola
-
-// };
-// botonGoId.addEventListener('click',funcionBoton);
-
+        
+        varInpUser.addEventListener("input",cambiosInputs); // es como una funcion (video Dom Time 1:06:53)
+        varInpPass.addEventListener("input",cambiosInputs);
+        varInpConfPass.addEventListener("input",cambiosInputs);
+        varBtnReg.addEventListener("click", enviarRegistro);
